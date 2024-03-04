@@ -28,7 +28,8 @@ namespace GenericRepository.Application.Services.UserServices
                 Name = userDTO.Name,
                 Email = userDTO.Email,
                 Login = userDTO.Login,
-                Password = userDTO.Password 
+                Password = userDTO.Password,
+                Role = userDTO.Role,
             };
             var result = await _userRepository.Create(user);
             return result;
@@ -47,6 +48,7 @@ namespace GenericRepository.Application.Services.UserServices
             {
                 Name = model.Name,
                 Email = model.Email,
+                Role = model.Role,
             });
             return rres;
         }
@@ -69,6 +71,12 @@ namespace GenericRepository.Application.Services.UserServices
             return res;
         }
 
+        public async Task<User> GetByLogin(string login)
+        {
+            var res = await _userRepository.GetByAny(x => x.Login == login);
+            return res;
+        }
+
         public async Task<User> GetByName(string name)
         {
             var ress = await _userRepository.GetByAny(x => x.Name ==  name);
@@ -86,7 +94,8 @@ namespace GenericRepository.Application.Services.UserServices
                     Name = userDTO.Name,
                     Email = userDTO.Email,
                     Login = userDTO.Login,
-                    Password = userDTO.Password
+                    Password = userDTO.Password,
+                    Role = userDTO.Role,
                 };
                 var result = await  _userRepository.Update(user);
                 return result;

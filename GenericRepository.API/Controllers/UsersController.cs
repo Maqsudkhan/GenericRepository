@@ -2,6 +2,7 @@
 using GenericRepository.Application.Abstractions.IServices;
 using GenericRepository.Domain.Entites.DTOs;
 using GenericRepository.Domain.Entites.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace GenericRepository.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;

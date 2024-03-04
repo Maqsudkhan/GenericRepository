@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GenericRepository.Infrastruture.Migrations
 {
     [DbContext(typeof(GenericRepositoryDbContext))]
-    [Migration("20240304133132_firstehhu")]
-    partial class firstehhu
+    [Migration("20240304164656_AddRolee")]
+    partial class AddRolee
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,6 +42,10 @@ namespace GenericRepository.Infrastruture.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");

@@ -1,0 +1,27 @@
+﻿using GenericRepository.Application.Abstractions.IServices;
+using GenericRepository.Domain.Entites.DTOs;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace GenericRepository.API.Controllers.Identity
+{
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class AuthController : ControllerBase
+    {
+        private readonly IAuthService _authService;
+
+        public AuthController(IAuthService authService)
+        {
+            _authService = authService;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ResponseLogin>> Login(RequestLogin model)
+        {
+            var result = await _authService.GenerateToken(model);
+            return Ok(result);
+        }
+    }
+}

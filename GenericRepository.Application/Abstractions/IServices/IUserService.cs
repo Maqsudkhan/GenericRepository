@@ -16,6 +16,7 @@ namespace GenericRepository.Application.Abstractions.IServices
         public Task<User> GetById(int id);
         public Task<User> GetByName(string name);
         public Task<User> GetByEmail(string email);
+        public Task<User> GetByLogin(string login);
         public Task<IEnumerable<UserViewModel>> GetAll();
         public Task<bool> Delete(Expression<Func<User, bool>> expression);
         public Task<User> Update(int Id, UserDTO userDTO);
