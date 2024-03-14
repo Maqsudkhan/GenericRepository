@@ -1,4 +1,5 @@
-﻿using GenericRepository.Application.Abstractions;
+﻿using AutoMapper;
+using GenericRepository.Application.Abstractions;
 using GenericRepository.Application.Abstractions.IServices;
 using GenericRepository.Domain.Entites.DTOs;
 using GenericRepository.Domain.Entites.Models;
@@ -15,22 +16,26 @@ namespace GenericRepository.Application.Services.UserServices
     public class UserService : IUserService 
     {
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         public async Task<User> Create(UserDTO userDTO)
         {
-            var user = new User()
+            /*var user = new User()
             {
                 Name = userDTO.Name,
                 Email = userDTO.Email,
                 Login = userDTO.Login,
                 Password = userDTO.Password,
                 Role = userDTO.Role,
-            };
+            };*/
+
+            var user = _mapper.Map<User>(userDTO);
             var result = await _userRepository.Create(user);
             return result;
         }
@@ -89,15 +94,16 @@ namespace GenericRepository.Application.Services.UserServices
 
             if (res != null)
             {
-                var user = new User()
                 {
-                    Name = userDTO.Name,
-                    Email = userDTO.Email,
-                    Login = userDTO.Login,
-                    Password = userDTO.Password,
-                    Role = userDTO.Role,
+                    res.Name = userDTO.Name;
+                    res.Email = userDTO.Email;
+                    res.Login = userDTO.Login;
+                    res.Password = userDTO.Password;
+                    res.Role = userDTO.Role;
                 };
-                var result = await  _userRepository.Update(user);
+
+
+                var result = await  _userRepository.Update(res);
                 return result;
             }
             return new User();

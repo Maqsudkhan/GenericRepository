@@ -1,5 +1,6 @@
 ﻿using GenericRepository.Application.Abstractions;
 using GenericRepository.Application.Abstractions.IServices;
+using GenericRepository.Application.Mappers;
 using GenericRepository.Application.Services.AuthServices;
 using GenericRepository.Application.Services.UserServices;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ namespace GenericRepository.Application
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddAutoMapper(typeof(AutoMapperConfugration));
 
             return services;
         }
