@@ -40,5 +40,15 @@ namespace GenericRepository.API.Controllers
             var result = await _userService.Update(id, model);
             return Ok(result);
         }
+
+        [HttpGet]
+        public async Task<User> UserGetById(int id)
+        {
+            var result = await _userService.GetById(id);
+
+            return result;
+        }
+
+        
     }
 }    

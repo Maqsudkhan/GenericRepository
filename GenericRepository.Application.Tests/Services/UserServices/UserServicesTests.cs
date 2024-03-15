@@ -217,6 +217,68 @@ namespace GenericRepository.Application.Tests.Services.UserServices
 
             return false;
         }
+
+
+
+        // Get User Test
+        [Fact]
+        public async Task Get_User_ById_TestAsync()
+        {
+            // Arrange
+            var user = new User()
+            {
+            
+
+                Id = 1,
+                Name = "Test Product 45",
+                Email = "maqsud@gmail.com",
+                Password = "111",
+                Login = "111",
+                Role = "Admin"
+            };
+
+            _userservice.Setup(s => s.GetById(2)).ReturnsAsync(user);
+
+            var controller = new UsersController(_userservice.Object);
+
+            // Act
+            var result = await controller.UserGetById(1);
+
+            Assert.True(CompareModels(result, user));
+        }
+
+
+        // Update
+        [Fact]
+        public async void Update_User_Test()
+        {
+            var _mapper = mockMapper.CreateMapper();
+            // Arrange
+            int Id = 5;
+            var user = new UserDTO()
+            {
+                Name = "Test Product 45",
+                Email = "maqsud@gmail.com",
+                Password = "111",
+                Login = "111",
+                Role = "Admin"
+            };
+
+            var result = _mapper.Map<User>(user);
+
+            _userservice.Setup(x => x.Update(Id, user))
+                .ReturnsAsync(result);
+
+            var controller = new UsersController(_userservice.Object);
+
+            var resultt = await controller.UpdateUser(Id, user);
+
+
+
+            Assert.True(CompareModels(resultt, result));
+
+            //update o'xshamayaptikuuuuuuuuu
+        }
     }
 }
 
