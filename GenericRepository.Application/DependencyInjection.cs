@@ -18,7 +18,7 @@ namespace GenericRepository.Application
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
-            services.AddAutoMapper(typeof(AutoMapperConfugration));
+            services.AddAutoMapper(typeof(AutoMapperProfile));
 
             return services;
         }

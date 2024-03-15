@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace GenericRepository.Application.Mappers
 {
-    public class AutoMapperConfugration : Profile
+    public class AutoMapperProfile : Profile
     {
-        public AutoMapperConfugration()
+        public AutoMapperProfile()
         {
             CreateMap<User, UserDTO>().ReverseMap();
         }
