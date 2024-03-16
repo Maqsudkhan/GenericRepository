@@ -35,10 +35,10 @@ namespace GenericRepository.API.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<IEnumerable<User>>> UpdateUser(int id, UserDTO model)
+        public async Task<User> UpdateUser(int id, UserDTO model)
         {
             var result = await _userService.Update(id, model);
-            return Ok(result);
+            return result;
         }
 
         [HttpGet]
@@ -49,6 +49,6 @@ namespace GenericRepository.API.Controllers
             return result;
         }
 
-        
+         
     }
 }    

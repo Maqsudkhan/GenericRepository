@@ -184,7 +184,7 @@ namespace GenericRepository.Application.Tests.Services.UserServices
 
         [Theory]
         [MemberData(nameof(GetUserFromDataGenerator), MemberType = typeof(UserServicesTests))]
-        public async void Create_User_Tests(UserDTO inputUser,  User expectedUser)
+        public async void Create_User_Tests(UserDTO inputUser, User expectedUser)
         {
             var myMapper = mockMapper.CreateMapper();
 
@@ -227,10 +227,10 @@ namespace GenericRepository.Application.Tests.Services.UserServices
             // Arrange
             var user = new User()
             {
-            
 
-                Id = 1,
-                Name = "Test Product 45",
+
+                Id = 2,
+                Name = "Test Product 2",
                 Email = "maqsud@gmail.com",
                 Password = "111",
                 Login = "111",
@@ -242,7 +242,7 @@ namespace GenericRepository.Application.Tests.Services.UserServices
             var controller = new UsersController(_userservice.Object);
 
             // Act
-            var result = await controller.UserGetById(1);
+            var result = await controller.UserGetById(2);
 
             Assert.True(CompareModels(result, user));
         }
